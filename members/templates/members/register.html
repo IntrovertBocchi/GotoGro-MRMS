@@ -1,0 +1,138 @@
+<!-- members/template/members/register.html-->
+
+{% extends "members/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="form-container">
+    
+    <h2>Register</h2>
+
+    <form method="POST" class="register-form">
+        {% csrf_token %}
+
+        <!-- Username field -->
+        <div class="form-group">
+            
+            <label for="id_username">Username</label>
+            
+            {{ form.username }}
+            
+            {% if form.username.errors %}
+            
+                <div class="text-danger">{{ form.username.errors }}</div>
+            
+            {% endif %}
+        
+        </div>
+
+        <!-- Email field -->
+        <div class="form-group">
+            
+            <label for="id_email">Email</label>
+            
+            {{ form.email }}
+            
+            {% if form.email.errors %}
+                
+                <div class="text-danger">{{ form.email.errors }}</div>
+            
+            {% endif %}
+        
+        </div>
+
+        <!-- First Name field -->
+        <div class="form-group">
+            
+            <label for="id_first_name">First Name</label>
+            
+            {{ form.first_name }}
+            
+            {% if form.first_name.errors %}
+            
+                <div class="text-danger">{{ form.first_name.errors }}</div>
+            
+            {% endif %}
+        
+        </div>
+
+        <!-- Last Name field -->
+        <div class="form-group">
+            
+            <label for="id_last_name">Last Name</label>
+            
+            {{ form.last_name }}
+            
+            {% if form.last_name.errors %}
+            
+                <div class="text-danger">{{ form.last_name.errors }}</div>
+            
+            {% endif %}
+        
+        </div>
+
+        <!-- Password1 field with toggle visibility icon -->
+        <div class="form-group">
+            
+            <label for="id_password1">Password</label>
+            
+            <div class="input-group justify-content-center">
+                
+                {{ form.password1 }}
+                
+                <div class="input-group-append">
+                    
+                    <span class="input-group-text" data-toggle="id_password1">
+                        
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    
+                    </span>
+                
+                </div>
+            
+            </div>
+            
+            {% if form.password1.errors %}
+                
+                <div class="text-danger">{{ form.password1.errors }}</div>
+            
+            {% endif %}
+        
+        </div>
+
+        <!-- Password2 (Confirm Password) field with toggle visibility icon -->
+        <div class="form-group">
+            
+            <label for="id_password2">Confirm Password</label>
+            
+            <div class="input-group justify-content-center">
+                
+                {{ form.password2 }}
+                
+                <div class="input-group-append">
+                    
+                    <span class="input-group-text" data-toggle="id_password2">
+                        
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    
+                    </span>
+                
+                </div>
+            
+            </div>
+            
+            {% if form.password2.errors %}
+                
+                <div class="text-danger">{{ form.password2.errors }}</div>
+            
+            {% endif %}
+        
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <a href="{% url 'home' %}" class="btn btn-danger">Back</a>
+
+    </form>
+
+</div>
+{% endblock %}

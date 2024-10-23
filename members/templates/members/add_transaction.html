@@ -1,0 +1,30 @@
+<!-- members/template/members/add_transactions.html-->
+
+{% extends "members/base.html" %}
+
+{% block content %}
+<div class="form-container">
+
+    <h2>Add Transaction</h2>
+
+    <form method="POST" class="transaction-form">
+        {% csrf_token %}
+        <div class="form-group">
+
+            <label for="amount">Amount</label>
+            <input type="number" step="0.01" class="form-control" id="amount" name="amount" required>
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="description" name="description" required>
+
+        </div>
+        
+        <button type="submit" class="btn btn-success">Add</button>
+        <a href="{% url 'transaction_history' %}" class="btn btn-danger">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!-- members/templates/members/update_sale.html -->
+
+{% extends "members/base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Update Sale</h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{% url 'sales_history' %}" class="btn btn-danger">Cancel</a>
+
+    </form>
+    
+</div>
+{% endblock %}

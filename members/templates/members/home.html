@@ -1,0 +1,12 @@
+<!-- members/templates/members/home.html -->
+ {% extends "members/base.html" %}
+ {% load static %}
+
+ {% block content %}
+<div class="container">
+    
+    <h1>Welcome to Members Management System</h1>
+    <p class="centered-text">Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'register' %}">register</a> to continue</p>
+
+</div>
+{% endblock %}

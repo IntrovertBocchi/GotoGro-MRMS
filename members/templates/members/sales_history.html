@@ -1,0 +1,56 @@
+<!-- sales_history.html -->
+
+{% extends "members/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+    <h2>Sales History</h2>
+
+    <a href="{% url 'record_sale' %}" class="btn btn-primary mb-3">Record Sales</a>
+    <form method="POST" action="{% url 'delete_sales' %}" onsubmit="return confirm('Are you sure you want to delete the selected sales?')">
+        {% csrf_token %}
+        <table class = "table table-striped">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Purchase Date</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for sale in sales %}
+                <tr>
+                    <td>
+                        <input type="checkbox" name="sales" value="{{ sale.id }}">
+                    </td>
+                    <td>{{ sale.item_name }}</td>
+                    <td>{{ sale.purchase_quantity }}</td>
+                    <td>{{ sale.total_price }}</td>
+                    <td>{{ sale.purchase_date }}</td>
+                    <td>
+                        <a href="{% url 'update_sale' sale.id %}" class="btn btn-sm btn-warning">Update</a>
+                    </td>
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="6">No purchases found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-secondary">Delete selected sales</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-danger">Back</a>
+    </form>
+    
+    
+
+</div>
+{% endblock %}

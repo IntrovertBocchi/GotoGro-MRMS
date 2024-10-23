@@ -1,0 +1,17 @@
+<!-- members/template/members/logout.html-->
+
+{% extends "members/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    
+    <h2>Logout</h2>
+
+    <p>You have logged out successfully.</p>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Return to Home</button>
+    </form>
+</div>
+{% endblock %}

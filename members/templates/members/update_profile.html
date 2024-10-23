@@ -1,0 +1,27 @@
+<!-- members/templates/members/update_profile.html -->
+
+{% extends "members/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Update Profile</h2>
+
+    <form method="POST" class="update-form">
+        {% csrf_token %}
+        
+        <fieldset class="form-group">
+            <legend>User Information</legend>
+            {{ u_form.as_p }}
+        </fieldset>
+
+        <fieldset class="form-group">
+            <legend>Profile Information</legend>
+            {{ p_form.as_p }}
+        </fieldset>
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a href="{% url 'profile' %}" class="btn btn-danger">Cancel</a>
+    </form>
+</div>
+{% endblock %}

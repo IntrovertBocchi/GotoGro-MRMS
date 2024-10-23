@@ -1,0 +1,38 @@
+<!-- members/template/members/profile.html-->
+
+{% extends "members/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    
+    <h2>Profile</h2>
+
+    <a href="{% url 'update_profile' %}" class="btn btn-primary">Edit Profile</a>
+    <a href="{% url 'change_password' %}" class="btn btn-secondary">Change Password</a>
+
+    <fieldset class="form-group">
+        <legend>User Information</legend>
+        <p><strong>Username:</strong> {{ request.user.username }}</p>
+        <p><strong>Email:</strong> {{ request.user.email }}</p>
+        <p><strong>First Name:</strong> {{ request.user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ request.user.last_name }}</p>
+    </fieldset>
+
+    <fieldset class="form-group">
+        <legend>Profile Information</legend>
+        <p><strong>Address:</strong> {{ request.user.profile.address }}</p>
+        <p><strong>Phone Number:</strong> {{ request.user.profile.phone_number }}</p>
+        <p><strong>Preferences:</strong> {{ request.user.profile.preferences }}</p>
+    </fieldset>
+
+    <hr>
+
+    <form method="POST" action="{% url 'delete_profile' %}" onsubmit="return confirm('Are you sure that you want to delete your profile? this action cannot be undone.');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning">Delete Profile</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-danger">Back</a>
+    </form>
+
+</div>
+{% endblock %}
