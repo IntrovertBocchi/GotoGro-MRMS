@@ -89,7 +89,7 @@
                     </span>
                 
                 </div>
-            
+
             </div>
             
             {% if form.password1.errors %}
@@ -99,7 +99,12 @@
             {% endif %}
         
         </div>
+        <br>
+        
+        <p>Your password can't be too similar to your other personal information.</p>
+        <p>Your password must contain at least 8 characters</p>
 
+        <br>
         <!-- Password2 (Confirm Password) field with toggle visibility icon -->
         <div class="form-group">
             
@@ -120,6 +125,8 @@
                 </div>
             
             </div>
+            
+            <br>
             
             {% if form.password2.errors %}
                 

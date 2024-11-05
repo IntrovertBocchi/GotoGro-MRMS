@@ -44,16 +44,42 @@
                     
                 </li>
 
+
                 <li class="nav-item">
 
                     <a class="nav-link" href="{% url 'sales_history' %}">Sales History</a>
                 </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="{% url 'inventory_list' %}">View Inventory</a>
+                    
+                </li>
+
+                {% if request.user.is_superuser %}
+                
+                <li class="nav-item">
+
+                    <a class="nav-link" href="{% url 'notifications' %}">View Notifications</a>
+                    
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link" href="{% url 'inventory_recommendations' %}">Inventory Recommendations</a>
+                    
+                </li>
+
+                {% endif %}
 
                 <li class="nav-item">
 
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
 
                 </li>
+
+               
 
                 {% else %}
                     

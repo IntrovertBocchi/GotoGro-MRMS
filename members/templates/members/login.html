@@ -16,13 +16,20 @@
         {% endfor %}
     {% endif %}        
 
-    <form method="POST" class="login-form">
+    <form method="POST" class="login-form" id="login-form">
         {% csrf_token %}
 
         <div class="form-group">
             
             <label for="id_username">Username</label>
+            
             {{ form.username }}
+
+            <script>
+
+                document.getElementById('id_username').setAttribute('autocomplete', 'off');
+
+            </script>
 
         </div>
 
@@ -34,6 +41,7 @@
             <div class="input-group justify-content-center">
 
                 {{ form.password }}
+
                 <div class="input-group-append">
                     <!-- toggle password visibility with an icon -->
                     <span class="input-group-text" data-toggle="id_password">
@@ -50,7 +58,11 @@
                 </div>
         
             {% endif %}
-        
+            
+            <script>
+                document.getElementById('id_password').setAttribute('autocomplete', 'new-password');
+            </script>
+
         </div>
 
         <button type="submit" class="btn btn-primary">Login</button>
@@ -59,4 +71,14 @@
     </form>
 
 </div>
+
+<!-- JavaScript to clear fields on page load -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Clear the username and password fields
+        document.getElementById('id_username').value = '';
+        document.getElementById('id_password').value = '';
+    });
+</script>
+ 
 {% endblock %}

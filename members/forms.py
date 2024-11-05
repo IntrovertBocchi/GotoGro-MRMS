@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-from .models import Profile, Sale
+from .models import Profile, Sale, Inventory
 
 # Form for registering new user
 class UserRegisterForm(UserCreationForm):
@@ -88,14 +88,14 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         # Specifies profile model to use and the fields associated in this form
         model = Profile
-        fields = ['address', 'phone_number', 'preferences']
+        fields = ['address', 'phone_number', 'preferences', 'postcode', 'suburb', 'city']
 
 
 class SaleUpdateForm(forms.ModelForm):
     
     class Meta:
         model = Sale
-        fields = ['item_name', 'purchase_quantity', 'total_price']
+        fields = ['item_name', 'purchase_quantity', 'price_per_unit']
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(label='Old Password', widget=forms.PasswordInput)
@@ -105,3 +105,9 @@ class CustomPasswordChangeForm(PasswordChangeForm):
     class Meta:
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
+
+
+class InventoryUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Inventory
+        fields = ['inventory_amount']

@@ -50,6 +50,21 @@ urlpatterns = [
         
         path('delete-sales/', member_views.delete_sales, name='delete_sales'),
 
+        path('inventory/', member_views.inventory_list, name='inventory_list'),
+
+        path('inventory/update/<int:inventory_id>/', member_views.update_inventory, name='update_inventory'),
+
+        path('delete-inventory/', member_views.delete_inventory, name='delete_inventory'),
+
+        path('export_sales/', member_views.export_sales_history, name='export_sales_history'),
+
+        path('export_inventory/', member_views.export_inventory, name='export_inventory'),
+        
+        path('notifications/', member_views.notifications, name='notifications'),
+
+        path('notifications/read/<int:notification_id>/', member_views.mark_notification_read, name='mark_notification_read'),
+
+        path('inventory/recommendations/', member_views.inventory_recommendations, name='inventory_recommendations'),
         #  URL patterns for user login with Django login view with custom login template
         path('login/', auth_views.LoginView.as_view(template_name='members/login.html'), name='login'),
 

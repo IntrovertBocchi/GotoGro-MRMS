@@ -1,0 +1,70 @@
+{% extends "members/base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Inventory</h2>
+
+    {% if request.user.is_superuser%}
+    <a href="{% url 'export_inventory' %}" class="btn btn-secondary mb-3">Export Inventory to CSV</a>
+    {% endif %}
+
+    <form method="POST" action="{% url 'delete_inventory' %}" onsubmit="return confirm('Are you sure you want to delete the selected inventory items?')">
+        
+        {% csrf_token %}
+        
+        <table class="table table-striped">
+            
+            <thead>
+                
+                <tr>
+                    <th>Select</th>
+                    <th>Item Name</th>
+                    <th>Inventory Amount</th>
+                    <th>Purchase Quantity</th>
+                    <th>Price Per Unit (RM)</th>
+                    <th>Remaining Quantity</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                
+                {% for inventory in inventories %}
+                
+                <tr>
+                    <td>
+                        <input type="checkbox" name="inventories" value="{{ inventory.id }}">
+                    </td>
+                    <td>{{ inventory.item_name }}</td>
+                    <td>{{ inventory.inventory_amount }}</td>
+                    <td>{{ inventory.total_purchase_quantity }}</td>
+                    <td>{{ inventory.price_per_unit }}</td>
+                    <td>{{ inventory.remaining_quantity }}</td>
+                    <td>
+                        <a href="{% url 'update_inventory' inventory.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    </td>
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="5">No inventory items found.</td>
+                </tr>
+
+                {% endfor %}
+                
+            </tbody>
+
+        </table>
+
+        <button type="submit" class="btn btn-secondary">Delete selected inventory items</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-danger">Back</a>
+
+    </form>
+
+</div>
+
+{% endblock %}
