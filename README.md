@@ -1,2 +1,2 @@
 # GotoGro-MRMS
-Repository for GotoGro-MRMS project – Sprint 1
+Repository for GotoGro-MRMS project
